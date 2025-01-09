@@ -4,7 +4,7 @@
 
 ## Что такое фреймворк?
 
-Термин **фреймворк** (от английского "framework") переводится как "_каркас_" или "_структура_". Это набор готовых библиотек, инструментов и стандартов, которые помогают разработчикам создавать приложения быстрее и эффективнее
+Термин **фреймворк** (от английского "framework") переводится как "_каркас_" или "_структура_". Это набор готовых библиотек, инструментов и стандартов, которые помогают разработчикам создавать приложения быстрее и эффективнее [^1].
 
 Фреймворк выполняет следующие функции:
 
@@ -34,7 +34,7 @@
 - **Svelte** — компилируемый фреймворк для создания интерактивных веб-приложений.
 - **Ember.js** — фреймворк для создания амбициозных веб-приложений.
 
-<img src="https://merehead.com/blog/wp-content/uploads/0-5.png" alt="Frontend Frameworks" style="width: 100%; max-width: 600px;" /> [^2]
+<img src="https://merehead.com/blog/wp-content/uploads/0-5.png" alt="Frontend Frameworks" style="width: 100%; max-width: 450px;" /> [^2]
 
 [^1]: What is a Framework? [online]. Available at: https://www.codecademy.com/resources/blog/what-is-a-framework/
 [^2]: Best JavaScript Frameworks. merehead.com [online]. Available at: https://merehead.com/ru/blog/best-javascript-frameworks-2024/
