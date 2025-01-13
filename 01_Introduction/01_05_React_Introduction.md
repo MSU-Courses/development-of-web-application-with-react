@@ -2,8 +2,7 @@
 
 ## Что такое React?
 
-> [!IMPORTANT]
-> > **React** — это не фреймворк, это библиотека!
+> [!IMPORTANT] > **React** — это не фреймворк, это библиотека!
 
 **React** — это популярная библиотека JavaScript, созданная Facebook, которая используется для разработки пользовательских интерфейсов веб-приложений. Она построена на основе компонентной архитектуры, где интерфейс разбивается на небольшие, независимые и переиспользуемые части — компоненты [^1].
 
@@ -76,10 +75,10 @@ npm create vite@latest
 
 После выполнения команды вам нужно выбрать параметры для проекта:
 
-- **Название проекта** (`Project Name`): укажите имя или оставьте . для текущей папки.
-- **Название приложения** (`Package name`): укажите название приложения.
-- **Используемый фреймворк** (`Select a framework`): выберите React.
-- **Используемый язык программирования** (`Select a variant`): выберите JavaScript.
+- **Название проекта** (`Project Name`). Укажите имя или оставьте . для текущей папки.
+- **Название приложения** (`Package name`). Укажите название приложения.
+- **Используемый фреймворк** (`Select a framework`). Выберите React.
+- **Используемый язык программирования** (`Select a variant`). Выберите JavaScript.
 
 **Завершение настройки**:
 
@@ -97,6 +96,6 @@ npm run dev
 
 Ваше приложение будет доступно в браузере по адресу `http://localhost:5173`.
 
-[^1]: React, react.dev [online]. Available at: https://react.dev/
-[^2]: Create React App, create-react-app.dev [online]. Available at: https://create-react-app.dev/
-[^3]: Getting Started, vite.com [online]. Available at: https://vite.dev/guide/
+[^1]: _React_, react.dev [online resource]. Available at: https://react.dev/
+[^2]: _Create React App_, create-react-app.dev [online resource]. Available at: https://create-react-app.dev/
+[^3]: _Getting Started_, vite.com [online resource]. Available at: https://vite.dev/guide/

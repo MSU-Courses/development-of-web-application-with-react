@@ -36,5 +36,5 @@
 
 <img src="https://merehead.com/blog/wp-content/uploads/0-5.png" alt="Frontend Frameworks" style="width: 100%; max-width: 450px;" /> [^2]
 
-[^1]: What is a Framework? [online]. Available at: https://www.codecademy.com/resources/blog/what-is-a-framework/
-[^2]: Best JavaScript Frameworks. merehead.com [online]. Available at: https://merehead.com/ru/blog/best-javascript-frameworks-2024/
+[^1]: _What is a Framework?_ codeacademy [online resource]. Available at: https://www.codecademy.com/resources/blog/what-is-a-framework/
+[^2]: _Best JavaScript Frameworks_. merehead.com [online resource]. Available at: https://merehead.com/ru/blog/best-javascript-frameworks-2024/

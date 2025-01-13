@@ -71,4 +71,4 @@ JavaScript позволяет асинхронно запрашивать дан
 
 Разделение веб-приложений на различные типы помогает понять, какие технологии и подходы лучше всего подходят для конкретных задач. Статические сайты идеально подходят для простого представления информации, динамические приложения обеспечивают интерактивность, а такие современные подходы, как SPA и PWA, позволяют создавать быстрые и удобные интерфейсы, которые отвечают ожиданиям пользователей.
 
-[^1]: Marek Kubacak. MPA, SPA & PWA… What’s the difference and how does it work together? linkedin.com [online]. Available at: https://www.linkedin.com/pulse/mpa-spa-pwa-whats-difference-how-does-work-together-marek-kubacak/
+[^1]: _Marek Kubacak. MPA, SPA & PWA… What’s the difference and how does it work together?_ linkedin.com [online resource]. Available at: https://www.linkedin.com/pulse/mpa-spa-pwa-whats-difference-how-does-work-together-marek-kubacak/
