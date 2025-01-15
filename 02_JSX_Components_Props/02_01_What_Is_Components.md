@@ -104,5 +104,5 @@ export default MyButton;
 
 Этот код может показаться вам сложным на первый взгляд, но не стоит беспокоиться. В следующих разделах мы детально разберем, как создавать компоненты в React и использовать их в приложениях.
 
-[^1]: Web Components Intro. javascript.info [online resource]. Available at: https://javascript.info/webcomponents-intro
-[^2]: Начало работы с React. developer.mozilla.org [online resource]. Available at: https://developer.mozilla.org/ru/docs/Learn_web_development/Core/Frameworks_libraries/React_getting_started
+[^1]: _Web Components Intro_. javascript.info [online resource]. Available at: https://javascript.info/webcomponents-intro
+[^2]: _Начало работы с React_. developer.mozilla.org [online resource]. Available at: https://developer.mozilla.org/ru/docs/Learn_web_development/Core/Frameworks_libraries/React_getting_started
