@@ -52,7 +52,6 @@ const element = React.createElement("h1", null, "Hello, React!");
 
 ```html
 <!-- index.html -->
-<!-- index.html -->
 <div>
   <p>
     <!-- Content -->
