@@ -2,7 +2,8 @@
 
 ## Что такое React?
 
-> [!IMPORTANT] > **React** — это не фреймворк, это библиотека!
+> [!IMPORTANT]
+> **React** — это не фреймворк, это библиотека!
 
 **React** — это популярная библиотека JavaScript, созданная Facebook, которая используется для разработки пользовательских интерфейсов веб-приложений. Она построена на основе компонентной архитектуры, где интерфейс разбивается на небольшие, независимые и переиспользуемые части — компоненты [^1].
 
@@ -96,6 +97,6 @@ npm run dev
 
 Ваше приложение будет доступно в браузере по адресу `http://localhost:5173`.
 
-[^1]: _React_, react.dev [online resource]. Available at: https://react.dev/
-[^2]: _Create React App_, create-react-app.dev [online resource]. Available at: https://create-react-app.dev/
-[^3]: _Getting Started_, vite.com [online resource]. Available at: https://vite.dev/guide/
+[^1]: _React_. react.dev [online resource]. Available at: https://react.dev/
+[^2]: _Create React App_. create-react-app.dev [online resource]. Available at: https://create-react-app.dev/
+[^3]: _Getting Started_. vite.com [online resource]. Available at: https://vite.dev/guide/

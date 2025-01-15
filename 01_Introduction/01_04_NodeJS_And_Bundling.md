@@ -130,7 +130,7 @@ function add(a, b){return a + b;}console.log(add(16, 26));
 
 <img src="https://img001.prntscr.com/file/img001/lJMLv1LJRO2cflJQtBkmKA.png" style="width: 100%; max-width: 650px" />
 
-[^1]: *NodeJS*, nodejs.org [online resource]. Available at: https://nodejs.org/en/about/
-[^2]: *npm*, npmjs.com [online resource]. Available at: https://www.npmjs.com/
-[^3]: *webpack*, webpack.js.org [online resource]. Available at: https://webpack.js.org/
-[^4]: *vite*, vite.dev [online resource]. Available at: https://vite.dev/
+[^1]: *NodeJS*. nodejs.org [online resource]. Available at: https://nodejs.org/en/about/
+[^2]: *npm*. npmjs.com [online resource]. Available at: https://www.npmjs.com/
+[^3]: *webpack*. webpack.js.org [online resource]. Available at: https://webpack.js.org/
+[^4]: *vite*. vite.dev [online resource]. Available at: https://vite.dev/
