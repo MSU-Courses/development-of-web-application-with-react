@@ -275,7 +275,7 @@ export default Header;
 .header {
   display: flex;
   color: black;
-  padding: 1rem;
+  padding: 0.5rem;
   text-align: center;
   margin-bottom: 2rem;
   border-radius: 10px;
@@ -287,6 +287,12 @@ export default Header;
 .header__title {
   margin: 0;
   font-size: 1.9rem;
+}
+
+@media (min-width: 576px) {
+  .header {
+    padding: 1rem;
+  }
 }
 ```
 
@@ -339,7 +345,294 @@ src/
 
 ## SCSS
 
-## SCSS модули
+**SCSS** — это мощное расширение CSS, которое добавляет новые возможности, такие как переменные, вложенные правила, миксины и многое другое. SCSS упрощает разработку и поддержку стилей, а после компиляции преобразуется в обычный CSS, совместимый с браузерами.
+
+### Примеры синтаксиса SCSS
+
+#### Использование переменных
+
+> [!TIP]
+> Переменные позволяют централизовать изменения в стилях. Например, один цвет можно переиспользовать в нескольких местах.
+
+```scss
+$primary-color: #3498db;
+
+body {
+  background-color: $primary-color;
+  color: white;
+}
+```
+
+#### Вложенные правила
+
+> [!TIP]
+> Вложенность упрощает структуру стилей, делая её более читаемой.
+
+**Пример 1.** _Базовая вложенность_
+
+```scss
+.container {
+  .header {
+    color: red;
+    .title {
+      font-size: 1.5rem;
+    }
+  }
+}
+```
+
+Скомпилируется в:
+
+```css
+.container .header {
+  color: red;
+}
+
+.container .header .title {
+  font-size: 1.5rem;
+}
+```
+
+**Пример 2.** _Использование `&` для ссылок на родительский элемент_
+
+```scss
+.header {
+  &__title {
+    color: red;
+
+    &--bold {
+      font-weight: bold;
+    }
+  }
+}
+```
+
+Скомпилируется в:
+
+```css
+.header__title {
+  color: red;
+}
+
+.header__title--bold {
+  font-weight: bold;
+}
+```
+
+#### Использование ссылки на родительский элемент
+
+Знак `&` в SCSS используется для ссылки на родительский селектор. Это позволяет создавать вложенные правила и упрощать работу с модификаторами и псевдоклассами.
+
+**Пример 1.** _Ссылка на родительский селектор_
+
+```scss
+.button {
+  &--primary {
+    background-color: blue;
+  }
+
+  &--secondary {
+    background-color: gray;
+  }
+}
+```
+
+Скомпилируется в:
+
+```css
+.button--primary {
+  background-color: blue;
+}
+
+.button--secondary {
+  background-color: gray;
+}
+```
+
+**Пример 2.** _Использование для псевдоклассов_
+
+```scss
+.button {
+  &:hover {
+    background-color: darkblue;
+  }
+
+  &:active {
+    background-color: navy;
+  }
+}
+```
+
+Скомпилируется в:
+
+```css
+.button:hover {
+  background-color: darkblue;
+}
+
+.button:active {
+  background-color: navy;
+}
+```
+
+**Пример 3.** _Вложенность с модификаторами_
+
+```scss
+.card {
+  &__title {
+    font-size: 1.5rem;
+
+    &--highlight {
+      color: red;
+    }
+  }
+}
+```
+
+Скомпилируется в:
+
+```css
+.card__title {
+  font-size: 1.5rem;
+}
+
+.card__title--highlight {
+  color: red;
+}
+```
+
+#### Миксины для медиа-запросов
+
+> [!TIP]
+> Миксины позволяют упростить работу с адаптивными стилями.
+
+**Пример 1.** _Миксин для медиа запросов_
+
+```scss
+@mixin xs {
+  @media (max-width: 576px) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media (min-width: 576px) and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: 768px) and (max-width: 992px) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: 992px) and (max-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
+.container {
+  padding: 1rem;
+
+  @include xs {
+    background-color: lightgray;
+  }
+
+  @include sm {
+    background-color: gray;
+  }
+
+  @include md {
+    background-color: darkgray;
+  }
+
+  @include lg {
+    background-color: black;
+  }
+
+  @include xl {
+    background-color: blue;
+  }
+}
+```
+
+Скомпилируется в:
+
+```css
+.container {
+  padding: 1rem;
+}
+
+@media (max-width: 576px) {
+  .container {
+    background-color: lightgray;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .container {
+    background-color: gray;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .container {
+    background-color: darkgray;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  .container {
+    background-color: black;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    background-color: blue;
+  }
+}
+```
+
+#### Импорт файлов стилей
+
+SCSS поддерживает **импорт файлов** для организации кода. Теперь CSS можно разбить на несколько логических частей и импортировать их в один файл.
+
+```scss
+// _variables.scss
+$primary-color: #3498db;
+
+// _header.scss
+.header {
+  background-color: $primary-color;
+}
+
+// styles.scss
+@import "variables";
+@import "header";
+```
+
+Все стили из файлов `_variables.scss` и `_header.scss` будут объединены в `styles.css`.
+
+> [!TIP]
+> Подробнее о возможностях SCSS можно узнать в официальной [документации SCSS](https://sass-lang.com/documentation).
+
+### Пример: Стилизация компонента `Header`
+
+1. Установите SCSS в проект:
+   ```bash
+   npm install sass
+   ```
+
+## CSS модули
 
 ## CSS-in-JS
 

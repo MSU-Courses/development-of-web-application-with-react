@@ -1,4 +1,4 @@
-import "../styles/components/PostCard.css";
+import "../styles/components/post-card.css";
 
 function PostCard({ title, content, date }) {
   return (

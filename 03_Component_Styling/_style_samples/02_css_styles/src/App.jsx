@@ -1,6 +1,5 @@
 import PostCard from "./components/PostCard";
 import Header from "./components/Header";
-import "./App.css";
 
 function App() {
   return (
