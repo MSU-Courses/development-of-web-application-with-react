@@ -1,0 +1,26 @@
+#app {
+  margin: 0 8%;
+
+  .main {
+    &__title {
+      font-family: "Space Grotesk";
+      margin: 0;
+    }
+
+    &__posts {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 20px;
+      justify-content: space-between;
+      align-items: stretch;
+
+      @include sm {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include lg {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+}

@@ -268,10 +268,10 @@ export default Header;
 
 1. **Создайте директорию styles**. В папке src создайте директорию `styles`, где будут храниться все файлы стилей.
 2. **Создайте директорию components**. Внутри `styles` создайте папку `components`. В этой папке будут находиться файлы стилей для отдельных компонентов.
-3. **Создайте файл Header.css**. В папке `components` создайте файл `Header.css` и добавьте в него следующий код:
+3. **Создайте файл Header.css**. В папке `components` создайте файл `header.css` и добавьте в него следующий код:
 
 ```css
-/* src/styles/components/Header.css */
+/* src/styles/components/header.css */
 .header {
   display: flex;
   color: black;
@@ -300,7 +300,7 @@ export default Header;
 
 ```jsx
 // src/components/Header.jsx
-import "./styles/components/Header.css";
+import "./styles/components/header.css";
 
 function Header() {
   return (
@@ -324,7 +324,7 @@ src/
 │   ├── Header.jsx
 ├── styles/
 │   ├── components/
-│   │   ├── Header.css
+│   │   ├── header.css
 │   │   ├── ...
 │   ├── index.css
 ├── App.jsx
@@ -509,26 +509,20 @@ body {
 **Пример 1.** _Миксин для медиа запросов_
 
 ```scss
-@mixin xs {
-  @media (max-width: 576px) {
-    @content;
-  }
-}
-
 @mixin sm {
-  @media (min-width: 576px) and (max-width: 768px) {
+  @media (min-width: 576px) {
     @content;
   }
 }
 
 @mixin md {
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) {
     @content;
   }
 }
 
 @mixin lg {
-  @media (min-width: 992px) and (max-width: 1200px) {
+  @media (min-width: 992px) {
     @content;
   }
 }
@@ -541,10 +535,6 @@ body {
 
 .container {
   padding: 1rem;
-
-  @include xs {
-    background-color: lightgray;
-  }
 
   @include sm {
     background-color: gray;
@@ -571,25 +561,19 @@ body {
   padding: 1rem;
 }
 
-@media (max-width: 576px) {
-  .container {
-    background-color: lightgray;
-  }
-}
-
-@media (min-width: 576px) and (max-width: 768px) {
+@media (min-width: 576px) {
   .container {
     background-color: gray;
   }
 }
 
-@media (min-width: 768px) and (max-width: 992px) {
+@media (min-width: 768px) {
   .container {
     background-color: darkgray;
   }
 }
 
-@media (min-width: 992px) and (max-width: 1200px) {
+@media (min-width: 992px) {
   .container {
     background-color: black;
   }
@@ -627,10 +611,160 @@ $primary-color: #3498db;
 
 ### Пример: Стилизация компонента `Header`
 
-1. Установите SCSS в проект:
+1. Установите SCSS в проект.
+
    ```bash
    npm install sass
    ```
+
+2. Подготовьте файл стилей компонента `Header`
+
+   - Переименуйте файл `header.css` в `_header.scss`. Добавьте в него стили с использованием SCSS, чтобы использовать переменные, вложенность и миксины:
+
+   ```scss
+   // src/styles/components/_header.scss
+   .header {
+     display: flex;
+     color: $primary-color;
+     padding: 0.5rem;
+     text-align: center;
+     margin-bottom: 2rem;
+     border-radius: 10px;
+     border: 1px solid $extra-color;
+     font-family: $heading-font;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+     &__title {
+       margin: 0;
+       font-size: 1.9rem;
+     }
+
+     // Используем медиа запросы для адаптивности
+     @include lg {
+       padding: 1rem;
+     }
+   }
+   ```
+
+3. Создайте файл с переменными.
+
+   - Добавьте файл `_variables.scss` в папке `styles` для хранения общих переменных:
+
+   ```scss
+   // src/styles/_variables.scss
+   $primary-color: #3498db;
+   $extra-color: #666;
+   $heading-font: "Space Grotesk";
+   ```
+
+4. Создайте файл с медиазапросами.
+
+   - В папке `styles/mixins` создайте файл `_media-query.scss` с адаптивными миксинами:
+
+   ```scss
+   // src/styles/mixins/_media-query.scss
+   @mixin sm {
+     @media screen and (min-width: $xs) {
+       @content;
+     }
+   }
+
+   @mixin md {
+     @media screen and (min-width: $sm) {
+       @content;
+     }
+   }
+
+   @mixin lg {
+     @media screen and (min-width: $md) {
+       @content;
+     }
+   }
+
+   @mixin xl {
+     @media screen and (min-width: $lg) {
+       @content;
+     }
+   }
+   ```
+
+5. Объедините стили компонентов
+
+   - Создайте файл `_all.scss` в папке `styles/components` для объединения всех стилей компонентов:
+
+   ```scss
+   // src/styles/components/_all.scss
+   @import "./header";
+   ```
+
+   Данный файл будет импортировать все стили из других файлов в папке `components`, для большего удобства.
+
+6. Импортируйте все стили в главный файл
+
+   - Создайте файл `main.scss` в папке `styles`, который будет объединять все стили приложения:
+
+   ```scss
+   // src/styles/main.scss
+
+   // Import Variables
+   @import "./variables";
+
+   // Import Mixins
+   @import "./mixins/media-query";
+
+   // Import Components
+   @import "./components/_all";
+   ```
+
+   > [!NOTE]
+   > При импорте SCSS файлов расширение `.scss` указывать не нужно — оно подставляется автоматически.
+
+7. Подключите стили в проект
+
+   - Обновите файл `main.jsx`, чтобы подключить стили из `main.scss`:
+
+   ```jsx
+   // src/main.jsx
+   import React from "react";
+   import ReactDOM from "react-dom/client";
+   import App from "./App";
+
+   // Подключение стилей
+   import "./styles/main.scss";
+
+   ReactDOM.createRoot(document.getElementById("root")).render(
+     <React.StrictMode>
+       <App />
+     </React.StrictMode>
+   );
+   ```
+
+### Итоговая структура проекта
+
+```bash
+src/
+├── components/
+│   ├── Header.jsx
+├── styles/
+│   ├── components/
+│   │   ├── _header.scss
+│   │   ├── _all.scss
+│   │   ├── ...
+│   ├── mixins/
+│   │   ├── _media-query.scss
+│   ├── _variables.scss
+│   ├── main.scss
+├── main.jsx
+├── ...
+```
+
+### Преимущества и недостатки
+
+| **Преимущества**                          | **Недостатки**                             |
+| ----------------------------------------- | ------------------------------------------ |
+| Легко разделять стили по компонентам.     | Даже те, что не используются.              |
+| Переменные и миксины сокращают код.       | Требуется компиляция SCSS.                 |
+| Структура SCSS улучшает организацию кода. | Увеличивается количество файлов в проекте. |
 
 ## CSS модули
 
