@@ -408,7 +408,7 @@ body {
 
 Знак `&` в SCSS используется для ссылки на родительский селектор. Это позволяет создавать вложенные правила и упрощать работу с модификаторами и псевдоклассами.
 
-**Пример 1.** _Ссылка на родительский селектор_
+**Пример 3.** _Ссылка на родительский селектор_
 
 ```scss
 .button {
@@ -434,7 +434,7 @@ body {
 }
 ```
 
-**Пример 2.** _Использование для псевдоклассов_
+**Пример 4.** _Использование для псевдоклассов_
 
 ```scss
 .button {
@@ -460,7 +460,7 @@ body {
 }
 ```
 
-**Пример 3.** _Вложенность с модификаторами_
+**Пример 5.** _Вложенность с модификаторами_
 
 ```scss
 .card {
@@ -491,7 +491,7 @@ body {
 > [!TIP]
 > Миксины позволяют упростить работу с адаптивными стилями.
 
-**Пример 1.** _Миксин для медиа запросов_
+**Пример 6.** _Миксин для медиа запросов_
 
 ```scss
 @mixin sm {
@@ -969,6 +969,151 @@ src/
 
 ## CSS-in-JS
 
+**CSS-in-JS** — это подход к стилизации компонентов, который позволяет **писать стили прямо в JavaScript-коде**. Это упрощает управление стилями и делает их тесно связанными с логикой компонентов.
+
+В данном разделе рассмотрим использование библиотеки `styled-components` — одной из самых популярных CSS-in-JS библиотек.
+
+### Что такое `styled-components?`
+
+`styled-components` позволяет создавать стилизованные компоненты с помощью тегов шаблонов (tagged template literals). Это обеспечивает изоляцию стилей и возможность динамической настройки.
+
+**Пример 7.** _Базовый пример_
+
+```jsx
+import styled from 'styled-components';
+
+const Button = styled.button`
+  background-color: blue;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+`;
+
+function App() {
+  return <Button>Click me</Button>;
+}
+```
+
+В этом примере стили для кнопки заданы с помощью компонента `styled.button`, который автоматически генерирует уникальный класс.
+
+**Пример 8.** _Условные и наследуемые стили_
+
+Библиотека поддерживает условные и наследуемые стили, что делает её особенно удобной для работы с динамическими интерфейсами.
+
+```jsx
+import styled from 'styled-components';
+
+// Условные стили: цвет зависит от значения пропса isPrimary
+const Title = styled.h1`
+  font-size: 2rem;
+  color: ${({ isPrimary }) => (isPrimary ? 'blue' : 'black')};
+`;
+
+// Наследование стилей: TomatoTitle наследует стили от Title и добавляет свои
+const TomatoTitle = styled(Title)`
+  color: tomato;
+`;
+
+function App() {
+  return (
+    <>
+      <Title isPrimary>Hello, world!</Title>
+      <TomatoTitle>Styled-components</TomatoTitle>
+    </>
+  );
+}
+```
+
+**Пример 9.** _Псевдоклассы и медиа-запросы_
+
+```jsx
+const Button = styled.button`
+  background-color: blue;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+
+  // Псевдокласс :hover
+  &:hover {
+    background-color: darkblue;
+  }
+
+  // Медиа-запрос
+  @media (min-width: 576px) {
+    padding: 1rem 2rem;
+  }
+`;
+```
+
+> [!NOTE]
+> Символ `&` ссылается на родительский элемент. Например, `&:hover` означает, что стиль будет применяться к элементу при наведении курсора.
+
+Полное описание возможностей библиотеки `styled-components` можно найти в официальной документации [^1].
+
+### Пример: Стилизация компонента `Header`
+
+1. Установите библиотеку `styled-components`:
+
+   ```bash
+   npm install styled-components
+   ```
+
+2. Переместите компонент `Header` в папку components и переименуйте его обратно в `Header.jsx`. Модули стилей больше не используются, так как стили теперь создаются с помощью `styled-components`.
+
+3. Создайте стилизованные компоненты для `Header`.
+
+   В компоненте Header создайте два стилизованных компонента с помощью styled-components: `Wrapper` и `HeaderTitle`:
+
+   - `Wrapper` — для обёртки заголовка.
+   - `HeaderTitle` — для самого заголовка.
+
+   ```jsx
+   // src/components/Header.jsx
+   import styled from 'styled-components';
+
+   // Создание стилизованного компонента Wrapper
+   const Wrapper = styled.header`
+     display: flex;
+     color: #252525;
+     padding: 0.5rem;
+     text-align: center;
+     margin-bottom: 2rem;
+     border-radius: 10px;
+     border: 1px solid #666;
+     font-family: 'Space Grotesk', sans-serif;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   `;
+
+   // Создание стилизованного компонента HeaderTitle
+   const HeaderTitle = styled.h1`
+     font-size: 2rem;
+     font-weight: 600;
+
+     @media (min-width: 1200px) {
+       padding: 1rem;
+     }
+   `;
+
+   function Header() {
+     return (
+       <Wrapper>
+         <HeaderTitle>blog-app</HeaderTitle>
+       </Wrapper>
+     );
+   }
+
+   export default Header;
+   ```
+
+4. Повторите шаги для всех компонентов приложения, создавая для каждого компонента стилизованные компоненты с помощью `styled-components`. В итоге у вас должен остаться единственный `styles/app.scss` файл для глобальных стилей.
+
+> [!TIP]
+> В данном примере тема и переменные не использовались для упрощения. Чтобы добавить глобальную тему и переменные, используйте пример приложения (`05_02_advanced_styled_components_with_theme`). Это позволит централизованно управлять стилями, такими как цвета, шрифты и отступы.
+
 ## Использование CSS фреймворков
 
 ## Использование библиотек для стилизации
+
+[^1]: _styled components documentation_. styled-components [online resource]. Available at: https://styled-components.com/docs/
