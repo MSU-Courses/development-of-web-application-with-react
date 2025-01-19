@@ -1,5 +1,3 @@
-import "../styles/components/post-card.css";
-
 function PostCard({ title, content, date }) {
   return (
     <div className="post-card">

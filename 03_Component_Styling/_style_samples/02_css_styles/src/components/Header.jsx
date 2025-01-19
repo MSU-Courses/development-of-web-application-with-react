@@ -1,5 +1,3 @@
-import "../styles/components/header.css";
-
 function Header() {
   return (
     <header className="header">

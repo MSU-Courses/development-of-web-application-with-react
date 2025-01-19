@@ -45,7 +45,7 @@
 
    ```jsx
    // src/App.jsx
-   import PostCard from "./components/PostCard";
+   import PostCard from './components/PostCard';
 
    function App() {
      return (
@@ -54,11 +54,7 @@
          <main>
            <h1>Recent Posts</h1>
            <div>
-             <PostCard
-               title="Hello, World!"
-               content="This is my first post"
-               date="2025-01-17"
-             />
+             <PostCard title="Hello, World!" content="This is my first post" date="2025-01-17" />
              <PostCard
                title="React Props"
                content="Learn how to use props in React"
@@ -102,7 +98,7 @@ src/
 
 ```css
 /* src/index.css */
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -188,23 +184,21 @@ function Header() {
   return (
     <header
       style={{
-        display: "flex",
-        color: "black",
-        padding: "1rem",
-        textAlign: "center",
-        marginBottom: "2rem",
-        borderRadius: "10px",
-        border: "1px solid #ccc",
-        fontFamily: "Space Grotesk",
-        boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-      }}
-    >
+        display: 'flex',
+        color: 'black',
+        padding: '1rem',
+        textAlign: 'center',
+        marginBottom: '2rem',
+        borderRadius: '10px',
+        border: '1px solid #ccc',
+        fontFamily: 'Space Grotesk',
+        boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+      }}>
       <h1
         style={{
           margin: 0,
-          fontSize: "1.9rem",
-        }}
-      >
+          fontSize: '1.9rem',
+        }}>
         blog-app
       </h1>
     </header>
@@ -223,8 +217,8 @@ export default Header;
   const isDarkMode = true;
 
   const headerStyle = {
-    backgroundColor: isDarkMode ? "black" : "white",
-    color: isDarkMode ? "white" : "black",
+    backgroundColor: isDarkMode ? 'black' : 'white',
+    color: isDarkMode ? 'white' : 'black',
   };
 
   function Header() {
@@ -264,52 +258,50 @@ export default Header;
 
 ### Пример: Стилизация компонента `Header`
 
-1. **Создайте директорию styles**. В папке src создайте директорию `styles`, где будут храниться все файлы стилей.
-2. **Создайте директорию components**. Внутри `styles` создайте папку `components`. В этой папке будут находиться файлы стилей для отдельных компонентов.
-3. **Создайте файл Header.css**. В папке `components` создайте файл `header.css` и добавьте в него следующий код:
+1. **Добавьте стили в файл `App.css`**. Создайте или измените файл `App.css`, добавив туда следующие стили для компонента `Header`.
 
-```css
-/* src/styles/components/header.css */
-.header {
-  display: flex;
-  color: black;
-  padding: 0.5rem;
-  text-align: center;
-  margin-bottom: 2rem;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-family: "Space Grotesk";
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+   ```css
+   /* src/App.css */
 
-.header__title {
-  margin: 0;
-  font-size: 1.9rem;
-}
+   /* Стили для компонента Header */
+   .header {
+     display: flex;
+     color: black;
+     padding: 0.5rem;
+     text-align: center;
+     margin-bottom: 2rem;
+     border-radius: 10px;
+     border: 1px solid #ccc;
+     font-family: 'Space Grotesk', sans-serif;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   }
 
-@media (min-width: 576px) {
-  .header {
-    padding: 1rem;
-  }
-}
-```
+   /* Стили для заголовка внутри Header */
+   .header__title {
+     margin: 0;
+     font-size: 1.9rem;
+   }
 
-4. **Подключите стили в Header.jsx**. Импортируйте файл стилей в компонент Header:
+   /* Медиа-запросы для адаптивности */
+   @media (min-width: 576px) {
+     .header {
+       padding: 1rem;
+     }
+   }
+   ```
 
-```jsx
-// src/components/Header.jsx
-import "./styles/components/header.css";
+2. **Импортируйте стили в `App.jsx`**. Для того чтобы стили применились глобально, необходимо импортировать файл `App.css` в компонент `App.jsx`.
 
-function Header() {
-  return (
-    <header className="header">
-      <h1 className="header__title">blog-app</h1>
-    </header>
-  );
-}
+   ```jsx
+   // ...
+   import './App.css'; // Импорт CSS файла
 
-export default Header;
-```
+   function App() {
+     // ...
+   }
+
+   export default App;
+   ```
 
 > [!NOTE]
 > Обратите внимание: мы не добавляем стили через `<link>` в HTML-файл. Вместо этого JSX позволяет напрямую подключать CSS-файлы к компонентам с помощью импорта. Это делает стилизацию более модульной и удобной.
@@ -320,11 +312,7 @@ export default Header;
 src/
 ├── components/
 │   ├── Header.jsx
-├── styles/
-│   ├── components/
-│   │   ├── header.css
-│   │   ├── ...
-│   ├── index.css
+│   ├── ...
 ├── App.jsx
 ├── main.jsx
 ├── index.html
@@ -333,13 +321,12 @@ src/
 
 ### Преимущества и недостатки
 
-| **Преимущества**                           | **Недостатки**                               |
-| ------------------------------------------ | -------------------------------------------- |
-| Легко понять и использовать.               | Возможны конфликты глобальных стилей.        |
-| Поддержка всех возможностей CSS.           | Нет изоляции стилей для компонентов.         |
-| Логика и стили разделены, код читаем.      | Трудно масштабировать в больших проектах.    |
-| Подходит для глобальных и базовых стилей.  | Требует поддержания порядка в файлах.        |
-| Простая интеграция с инструментами сборки. | Нужно следовать правилам именования классов. |
+| **Преимущества**                                         | **Недостатки**                                                    |
+| -------------------------------------------------------- | ----------------------------------------------------------------- |
+| Легко понять и использовать.                             | Возможны конфликты глобальных стилей.                             |
+| Поддержка всех возможностей CSS.                         | Нет изоляции стилей для компонентов.                              |
+| Не требует дополнительной конфигурации или инструментов. | Трудно масштабировать в больших проектах.                         |
+| Подходит для глобальных и базовых стилей.                | Большое количество стилей в одном файле усложняет работу с кодом. |
 
 ## SCSS
 
@@ -598,8 +585,8 @@ $primary-color: #3498db;
 }
 
 // styles.scss
-@import "variables";
-@import "header";
+@import 'variables';
+@import 'header';
 ```
 
 Все стили из файлов `_variables.scss` и `_header.scss` будут объединены в `styles.css`.
@@ -652,7 +639,7 @@ $primary-color: #3498db;
    // src/styles/_variables.scss
    $primary-color: #3498db;
    $extra-color: #666;
-   $heading-font: "Space Grotesk";
+   $heading-font: 'Space Grotesk';
    ```
 
 4. Создайте файл с медиазапросами.
@@ -692,7 +679,7 @@ $primary-color: #3498db;
 
    ```scss
    // src/styles/components/_all.scss
-   @import "./header";
+   @import './header';
    ```
 
    Данный файл будет импортировать все стили из других файлов в папке `components`, для большего удобства.
@@ -705,13 +692,13 @@ $primary-color: #3498db;
    // src/styles/main.scss
 
    // Import Variables
-   @import "./variables";
+   @import './variables';
 
    // Import Mixins
-   @import "./mixins/media-query";
+   @import './mixins/media-query';
 
    // Import Components
-   @import "./components/_all";
+   @import './components/_all';
    ```
 
    > [!NOTE]
@@ -723,17 +710,17 @@ $primary-color: #3498db;
 
    ```jsx
    // src/main.jsx
-   import React from "react";
-   import ReactDOM from "react-dom/client";
-   import App from "./App";
+   import React from 'react';
+   import ReactDOM from 'react-dom/client';
+   import App from './App';
 
    // Подключение стилей
-   import "./styles/main.scss";
+   import './styles/main.scss';
 
-   ReactDOM.createRoot(document.getElementById("root")).render(
+   ReactDOM.createRoot(document.getElementById('root')).render(
      <React.StrictMode>
        <App />
-     </React.StrictMode>
+     </React.StrictMode>,
    );
    ```
 

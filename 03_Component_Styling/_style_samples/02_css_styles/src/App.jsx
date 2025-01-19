@@ -1,5 +1,6 @@
-import PostCard from "./components/PostCard";
-import Header from "./components/Header";
+import PostCard from './components/PostCard';
+import Header from './components/Header';
+import './App.css';
 
 function App() {
   return (
@@ -10,11 +11,7 @@ function App() {
           <span>#recent-posts</span>
         </h1>
         <div className="main__posts">
-          <PostCard
-            title="Hello, World!"
-            content="This is my first post"
-            date="2025-01-17"
-          />
+          <PostCard title="Hello, World!" content="This is my first post" date="2025-01-17" />
           <PostCard
             title="React Props"
             content="Learn how to use props in React"

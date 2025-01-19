@@ -3,7 +3,7 @@
 }
 
 .main__title {
-  font-family: "Space Grotesk";
+  font-family: 'Space Grotesk';
   margin: 0;
 }
 
@@ -25,4 +25,63 @@
   .main__posts {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+/* Header styles */
+
+.header {
+  display: flex;
+  color: black;
+  padding: 0.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-family: 'Space Grotesk';
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header__title {
+  margin: 0;
+  font-size: 1.9rem;
+}
+
+@media (min-width: 576px) {
+  .header {
+    padding: 1rem;
+  }
+}
+
+/* Post Style */
+.post-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-card__title {
+  margin: 0;
+  font-size: 1.4rem;
+  font-family: 'Space Grotesk';
+}
+
+.post-card__content {
+  margin: 0;
+}
+
+.post-card__date {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.post-card__link {
+  color: blue;
+  text-decoration: none;
 }
