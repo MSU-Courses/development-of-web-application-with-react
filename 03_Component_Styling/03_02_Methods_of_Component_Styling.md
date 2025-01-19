@@ -306,7 +306,7 @@ export default Header;
 > [!NOTE]
 > Обратите внимание: мы не добавляем стили через `<link>` в HTML-файл. Вместо этого JSX позволяет напрямую подключать CSS-файлы к компонентам с помощью импорта. Это делает стилизацию более модульной и удобной.
 
-### Итоговая структура проекта
+#### Итоговая структура проекта
 
 ```bash
 src/
@@ -737,7 +737,7 @@ function App() {
 export default App;
 ```
 
-### Итоговая структура проекта
+#### Итоговая структура проекта
 
 ```bash
 src/
@@ -765,6 +765,200 @@ src/
 | Структура SCSS улучшает организацию кода. | Увеличивается количество файлов в проекте.         |
 
 ## CSS модули
+
+**CSS модули** — это современный способ стилизации компонентов в React, позволяющий изолировать стили компонентов и избежать конфликтов. Они создают уникальные имена классов автоматически, что делает их особенно полезными в масштабируемых приложениях.
+
+> [!TIP]
+> В данной главе используется `SCSS`, но вы можете использовать обычные CSS файлы.
+
+### Что такое CSS модули?
+
+**CSS модули** работают как обычные CSS/SCSS файлы, но при этом имена классов внутри файлов становятся уникальными.
+
+Например, вместо `.header` будет создан уникальный класс `.header__1s3d2`, который исключает конфликты.
+
+### Как создать CSS модуль?
+
+Допустим, у нас есть компонент `Component`. Чтобы создать для него CSS модуль:
+
+- Назовите файл стилей `Component.module.css` (или `.scss`).
+- Разместите файл стилей в той же папке, где находится компонент.
+
+**Структура файлов:**
+
+```bash
+src/
+├── components/
+│   ├── Component/
+│   │   ├── index.jsx
+│   │   ├── Component.module.scss
+```
+
+**Код компонента:**
+
+```jsx
+// src/components/Component/index.jsx
+import React from 'react';
+import styles from './Component.module.scss';
+
+function Component() {
+  return (
+    <div className={styles.component}>
+      <p className={styles.content}>Hi, I'm a component</p>
+    </div>
+  );
+}
+
+export default Component;
+```
+
+**Код стилей:**
+
+```scss
+/* src/components/Component/Component.module.scss */
+.component {
+  color: red;
+}
+
+.content {
+  font-size: 1.2rem;
+}
+```
+
+После импорта модуля styles он становится объектом с уникальными именами классов:
+
+```js
+{
+  component: '_component_1s3d2',
+  content: '_content_1s3d4',
+}
+```
+
+Компонент `Header.jsx` был переименован в `index.jsx`, чтобы избежать тавтологии. Теперь файл компонента называется `index.jsx`, а папка с компонентом — `Header`, вместо того, чтоб при импорте указывать путь к файлу `Header/Header`.
+
+### Пример: Стилизация компонента `Header`
+
+1. Создайте директорию `Header` в папке `components`, чтобы хранить компонент и его стили.
+2. Создайте файл `_utils.scss` в папке `styles`, чтобы объединить все переменные и миксины, которые будут использоваться в компонентах. Этот файл можно импортировать в любой модуль стилей.
+
+   ```scss
+   // src/styles/_utils.scss
+
+   // Импорт переменных
+   @import '_variables.scss';
+
+   // Импорт миксинов
+   @import 'mixins/_media-query.scss';
+   ```
+
+3. Добавьте файл `Header.module.scss` для стилей компонента:
+
+   ```scss
+   // src/components/Header/Header.module.scss
+   @import '../../styles/_utils';
+
+   .header {
+     display: flex;
+     color: $primary-color;
+     padding: 0.5rem;
+     text-align: center;
+     margin-bottom: 2rem;
+     border-radius: 10px;
+     border: 1px solid $extra-color;
+     font-family: $heading-font;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   }
+
+   .title {
+     margin: 0;
+     font-size: 1.9rem;
+
+     @include lg {
+       padding: 1rem;
+     }
+   }
+   ```
+
+   > [!NOTE]
+   > Благодаря уникальности CSS модулей больше нет необходимости создавать сложные иерархические имена классов (например, `header__title`). Можно использовать простые и интуитивно понятные имена (например, `title`), которые автоматически будут преобразованы в уникальные.
+
+4. Используйте стили в компоненте:
+
+   ```jsx
+   // src/components/Header/Header.jsx
+   import React from 'react';
+
+   // Импорт стилей как переменной
+   import styles from './Header.module.scss';
+
+   function Header() {
+     // styles — это объект, в котором хранятся уникальные имена классов
+     return (
+       <header className={styles.header}>
+         <h1 className={styles.title}>blog-app</h1>
+       </header>
+     );
+   }
+
+   export default Header;
+   ```
+
+5. Удалите файл `/styles/components/_header.scss`, так как все стили теперь находятся в модуле Header.module.scss.
+
+6. Для упрощения импорта и избежания тавтологии переименуйте файл компонента `Header.jsx` в `index.jsx`. Это позволит импортировать компонент без указания имени файла:
+
+   ```jsx
+   // src/components/Header/index.jsx
+   function Header() {
+     return (
+       <header className={styles.header}>
+         <h1 className={styles.title}>blog-app</h1>
+       </header>
+     );
+   }
+
+   export default Header;
+   ```
+
+7. Измените импорт компонента в `App.jsx`:
+
+   ```jsx
+   // src/App.jsx
+   import Header from './components/Header';
+
+   function App() {
+     return (
+       // ...
+     );
+   }
+
+   export default App;
+   ```
+
+8. Повторите шаги для всех компонентов приложения, создавая для каждого компонента отдельные модули стилей. В итоге все стили будут храниться в папках компонентов, а директория `styles/components` станет ненужной и может быть удалена. Этот подход улучшает модульность и упрощает управление стилями.
+
+> [!NOTE]
+> Файл `main.scss` предназначен для хранения глобальных стилей, а также для импорта шрифтов, переменных и миксинов, доступных для всего приложения.
+
+#### Итоговая структура проекта
+
+```bash
+src/
+├── components/
+│   ├── Header
+│   │   ├── index.jsx
+│   │   ├── Header.module.scss
+│   ├── ...
+├── styles/
+│   ├── mixins/
+│   │   ├── _media-query.scss
+│   ├── _utils.scss
+│   ├── _variables.scss
+│   ├── main.scss
+├── main.jsx
+├── ...
+```
+
 
 ## CSS-in-JS
 

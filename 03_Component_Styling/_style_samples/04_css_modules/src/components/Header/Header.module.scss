@@ -1,0 +1,22 @@
+@import '../../styles/_utils';
+
+.header {
+  display: flex;
+  color: $primary-color;
+  padding: 0.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  border: 1px solid $extra-color;
+  font-family: $heading-font;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  margin: 0;
+  font-size: 1.9rem;
+
+  @include lg {
+    padding: 1rem;
+  }
+}

@@ -1,0 +1,61 @@
+// Import Fonts
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
+@import '_utils';
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}
+
+body {
+  margin: 40px auto;
+  padding: 0;
+  max-width: 1270px;
+  background-color: #f5f5f5;
+}
+
+/* App */
+#app {
+  margin: 0 8%;
+
+  .main {
+    &__title {
+      font-family: 'Space Grotesk';
+      margin: 0;
+    }
+
+    &__posts {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 20px;
+      justify-content: space-between;
+      align-items: stretch;
+
+      @include sm {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include lg {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+}
+
+/* Normalize */
+
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
