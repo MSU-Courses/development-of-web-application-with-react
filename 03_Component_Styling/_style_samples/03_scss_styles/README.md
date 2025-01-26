@@ -1,8 +1,31 @@
-# React + Vite
+# Стилизация компонентов  с помощью SCSS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**SCSS** — это мощное расширение CSS, которое добавляет новые возможности, такие как переменные, вложенные правила, миксины и многое другое. SCSS упрощает разработку и поддержку стилей, а после компиляции преобразуется в обычный CSS, совместимый с браузерами [^2].
 
-Currently, two official plugins are available:
+## Преимущества и недостатки
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| **Преимущества**                          | **Недостатки**                                     |
+| ----------------------------------------- | -------------------------------------------------- |
+| Легко разделять стили по компонентам.     | Даже неиспользуемые стили попадают в итоговый CSS. |
+| Переменные и миксины сокращают код.       | Требуется компиляция SCSS.                         |
+| Структура SCSS улучшает организацию кода. | Увеличивается количество файлов в проекте. 
+
+## Запуск проекта
+
+1. Передийдите в папку с проектом:
+
+```bash
+cd <путь до папки с проектом>
+```
+
+2. Установите зависимости:
+
+```bash
+npm install
+```
+
+3. Запустите проект:
+
+```bash
+npm run dev
+```
