@@ -1,0 +1,7 @@
+.header {
+  @apply font-serif flex text-slate-900 p-2 text-center mb-8 rounded-lg border border-slate-600 shadow-md;
+
+  .title {
+    @apply text-3xl font-bold lg:p-4;
+  }
+}
