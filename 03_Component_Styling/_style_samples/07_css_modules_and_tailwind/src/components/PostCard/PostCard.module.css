@@ -1,0 +1,22 @@
+@reference "../../styles/main.css";
+
+.post {
+   @apply flex flex-col justify-between gap-2 border border-slate-900 p-4 max-w-96 rounded-lg shadow-md;
+ 
+   .title {
+     @apply text-2xl m-0 font-serif;
+   }
+ 
+   .content {
+     @apply m-0;
+   }
+ 
+   .date {
+     @apply text-sm text-slate-600;
+   }
+ 
+   .link {
+     @apply text-blue-700 decoration-0;
+   }
+ }
+ 

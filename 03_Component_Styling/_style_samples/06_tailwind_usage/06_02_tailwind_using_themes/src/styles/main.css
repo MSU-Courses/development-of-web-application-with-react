@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
+@import 'tailwindcss';
+
+@import 'theme.css';
+
+body {
+  margin: 40px auto;
+  padding: 0;
+  max-width: 1270px;
+  background-color: #f5f5f5;
+}
