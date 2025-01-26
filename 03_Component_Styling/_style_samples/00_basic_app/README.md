@@ -1,8 +1,33 @@
-# React + Vite
+# Sample Blog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Начальное приложение для стилизации компонентов.
 
-Currently, two official plugins are available:
+Приложение отображает список постов.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Компоненты
+
+Приложение содержит 3 компонента:
+
+- `PostCard` — отображает пост с заголовком, текстом и датой.
+- `Header` — отображает заголовок страницы.
+- `App` — объединяет всё приложение и отображает список постов.
+
+## Запуск проекта
+
+1. Передийдите в папку с проектом:
+
+```bash
+cd <путь до папки с проектом>
+```
+
+2. Установите зависимости:
+
+```bash
+npm install
+```
+
+3. Запустите проект:
+
+```bash
+npm run dev
+```
