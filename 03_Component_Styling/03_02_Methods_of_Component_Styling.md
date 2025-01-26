@@ -807,24 +807,6 @@ src/
 │   │   ├── Component.module.scss
 ```
 
-**Код компонента:**
-
-```jsx
-// src/components/Component/index.jsx
-import React from 'react';
-import styles from './Component.module.scss';
-
-function Component() {
-  return (
-    <div className={styles.component}>
-      <p className={styles.content}>Hi, I'm a component</p>
-    </div>
-  );
-}
-
-export default Component;
-```
-
 **Код стилей:**
 
 ```scss
@@ -837,6 +819,27 @@ export default Component;
   font-size: 1.2rem;
 }
 ```
+
+**Код компонента:**
+
+```jsx
+// src/components/Component/index.jsx
+import React from 'react';
+import styles from './Component.module.scss';
+
+function Component() {
+  return (
+    // Используем уникальные имена классов
+    // Которые автоматически создаются CSS модулями
+    <div className={styles.component}>
+      <p className={styles.content}>Hi, I'm a component</p>
+    </div>
+  );
+}
+
+export default Component;
+```
+
 
 После импорта модуля styles он становится объектом с уникальными именами классов:
 
