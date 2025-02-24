@@ -249,4 +249,3 @@ function Counter() {
 Таким образом, состояние в React работает как **снимок данных**, который обновляется при каждом новом рендере.
 
 [^1]: _State: A Component's Memory_. react. dev [online resource]. URL: https://react.dev/learn/state-a-components-memory
-```
