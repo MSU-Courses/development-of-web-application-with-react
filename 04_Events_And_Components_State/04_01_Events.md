@@ -360,6 +360,6 @@ export default App;
 6. и другие случаи.
 
 > [!NOTE]
-> Если обработчик не использует свойства event, передавать его не нужно.
+> Если обработчик не использует свойства `event`, передавать его не нужно.
 
 [^1]: _Responding to Events_. react.dev [online resource]. Available at: https://react.dev/learn/responding-to-events
