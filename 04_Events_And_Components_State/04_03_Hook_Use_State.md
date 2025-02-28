@@ -458,7 +458,7 @@ function Library() {
   return (
     <div>
       <ul>
-        {# Выводим список книг #}
+        {/* Выводим список книг */}
       </ul>
       <button onClick={addBook}>Добавить книгу</button>
     </div>
@@ -528,7 +528,7 @@ function Library() {
   return (
     <div>
       <ul>
-        {# Выводим список книг #}
+        {/* Выводим список книг */}
       </ul>
       <button onClick={() => updateBook(2, 'React Native')}>Обновить книгу</button>
     </div>
