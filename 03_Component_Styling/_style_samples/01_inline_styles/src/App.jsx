@@ -1,47 +1,40 @@
-import PostCard from "./components/PostCard";
-import Header from "./components/Header";
+import { useState, useRef, useEffect } from 'react';
 
-function App() {
+function Timer() {
+  const [seconds, setSeconds] = useState(0); // состояние для секунд (отображается в UI)
+  const [timerId, setTimerId] = useState(null); // состояние для ID таймера
+
+  const startTimer = () => {
+    if (timerRef.current !== null) {
+      return;
+    }
+
+    // Повторный рендер компонента происходит при изменении состояния seconds
+    timerRef.current = setInterval(() => {
+      setSeconds((prev) => prev + 1);
+    }, 1000);
+  };
+
+  const stopTimer = () => {
+    // Повторного рендера компонента не происходит
+    if (timerRef.current !== null) {
+      clearInterval(timerRef.current); // останавливаем таймер по ID
+      timerRef.current = null; // сбрасываем реф (таймер остановлен)
+    }
+  };
+
+  useEffect(() => {
+    // Очистка таймера при размонтировании компонента, на случай если он еще работает
+    return () => {
+      clearInterval(timerRef.current);
+    };
+  }, []);
+
   return (
-    <div id="app">
-      <Header />
-      <main>
-        <h1
-          style={{
-            fontFamily: "Space Grotesk",
-            margin: "0",
-          }}
-        >
-          <span>#recent-posts</span>
-        </h1>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "20px",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <PostCard
-            title="Hello, World!"
-            content="This is my first post"
-            date="2025-01-17"
-          />
-          <PostCard
-            title="React Props"
-            content="Learn how to use props in React"
-            date="2025-01-17"
-          />
-          <PostCard
-            title="React Components"
-            content="Explore the world of React components"
-            date="2025-01-17"
-          />
-        </div>
-      </main>
+    <div>
+      <h3>Секунды: {seconds}</h3>
+      <button onClick={startTimer}>Start</button>
+      <button onClick={stopTimer}>Stop</button>
     </div>
   );
 }
-
-export default App;
