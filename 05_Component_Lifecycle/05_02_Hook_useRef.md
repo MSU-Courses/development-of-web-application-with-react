@@ -248,10 +248,14 @@ function Component() {
 #### Пример: Фокус на поле ввода
 
 ```jsx
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 function Input() {
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   const handleClick = () => {
     inputRef.current.focus();
@@ -264,6 +268,8 @@ function Input() {
     </div>
   );
 }
+
+export default Input;
 ```
 
 В данном примере:
