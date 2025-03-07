@@ -91,9 +91,9 @@ export default App;
 
 | Итерация | `framework` | JSX-элемент                      |
 | -------- | ----------- | -------------------------------- |
-| 1        | "React?"    | `<li key="React?">React?</li>`   |
-| 2        | "Angular"   | `<li key="Angular">Angular</li>` |
-| 3        | "Vue"       | `<li key="Vue">Vue</li>`         |
+| 1        | "React?"    | `<li>React?</li>`   |
+| 2        | "Angular"   | `<li>Angular</li>` |
+| 3        | "Vue"       | `<li>Vue</li>`         |
 
 Итоговая разметка:
 
@@ -101,9 +101,9 @@ export default App;
 <div>
   <h1>Frameworks i'd like to learn:</h1>
   <ul>
-    <li key="React?">React?</li>
-    <li key="Angular">Angular</li>
-    <li key="Vue">Vue</li>
+    <li>React?</li>
+    <li>Angular</li>
+    <li>Vue</li>
   </ul>
 </div>
 ```
