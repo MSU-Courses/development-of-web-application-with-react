@@ -139,10 +139,10 @@ function Timer() {
 Попробуем наоборот использовать useRef для изменения состояния компонента. Попробуем реализовать `Counter`, который увеличивает значение на 1 при каждом клике на кнопку.
 
 ```jsx
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 
 function Counter() {
-  const countRef = useRef(count);
+  const countRef = useRef(0);
 
   const handleClick = () => {
     countRef.current += 1;
@@ -150,7 +150,7 @@ function Counter() {
 
   return (
     <div>
-      <h3>Счётчик: {count}</h3>
+      <h3>Счётчик: {countRef.current}</h3>
       <button onClick={handleClick}>Увеличить</button>
     </div>
   );
