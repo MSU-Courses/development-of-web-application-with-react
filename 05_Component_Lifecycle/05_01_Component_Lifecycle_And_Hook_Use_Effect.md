@@ -276,7 +276,7 @@ function Slider() {
     return () => {
       clearInterval(interval);
     };
-  }, [index]);
+  }, []);
 
   function showDescription() {
     setIsDescription(!isDescription);
