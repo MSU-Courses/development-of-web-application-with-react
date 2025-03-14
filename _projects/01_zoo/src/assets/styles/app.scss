@@ -1,0 +1,18 @@
+@use "./fonts" as *;
+
+body {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+}
+
+code {
+  font-family: "JetBrains Mono", monospace;
+}
+
+h1 {
+    font-family: "Cinzel", serif;
+}
+
+.primary-button {
+    color: red;
+}
