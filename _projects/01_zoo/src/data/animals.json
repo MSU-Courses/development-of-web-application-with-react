@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Lion",
+    "species": "Panthera leo",
+    "age": 10,
+    "type": "Mammal",
+    "description": "The lion is a species in the family Felidae; it is a muscular, deep-chested cat with a short, rounded head, a reduced neck and round ears, and a hairy tuft at the end of its tail."
+  },
+  {
+    "id": 2,
+    "name": "Capibara",
+    "species": "Hydrochoerus hydrochaeris",
+    "age": 5,
+    "type": "Mammal",
+    "description": "The capybara is a mammal native to South America. It is the largest living rodent in the world. Also called chigüire, chigüiro, or carpincho in Spanish."
+  },
+  {
+    "id": 3,
+    "name": "Capuchin Monkey",
+    "species": "Cebus capucinus",
+    "age": 3,
+    "type": "Mammal",
+    "description": "The capuchin monkeys are New World monkeys of the subfamily Cebinae. They are readily identified as the 'organ grinder' monkey, and have been used in many movies and television shows."
+  }
+]
