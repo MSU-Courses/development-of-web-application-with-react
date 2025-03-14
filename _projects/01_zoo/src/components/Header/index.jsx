@@ -1,4 +1,5 @@
 import Navigation from "../Navigation";
+import PrimaryButton from "../ui/PrimaryButton";
 import styles from "./Header.module.scss";
 
 function Header() {
@@ -6,7 +7,7 @@ function Header() {
     <header className={styles.root}>
       <h1>virtual zoo</h1>
       <Navigation />
-      <button className={styles.button}>Login</button>
+      <PrimaryButton text={"Login"} />
     </header>
   );
 }

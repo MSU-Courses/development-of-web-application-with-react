@@ -1,3 +1,4 @@
+import PrimaryButton from "../ui/PrimaryButton";
 import styles from "./Hero.module.scss";
 
 import heroImg from "/images/hero.jpg";
@@ -9,6 +10,10 @@ function Hero() {
       <div className={styles.text}>
         <h1>Virtual Zoo</h1>
         <h2>Explore the world of animals</h2>
+        <PrimaryButton
+          text={"Get Started"}
+          className={styles.button}
+        />
       </div>
     </div>
   );
