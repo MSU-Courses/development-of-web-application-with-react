@@ -663,6 +663,48 @@ function Navigation() {
 - После выполнения асинхронного запроса.
 - При нажатии на кнопку.
 
+## Recap: Маршрутизация в React
+
+1. **Маршрутизация в React**:
+
+   - Происходит на стороне клиента (SPA).
+   - Позволяет переключать компоненты без перезагрузки страницы.
+
+2. **Чистая маршрутизация в React**:
+
+   - Использует состояние и методы навигации через `window.history.pushState`.
+   - Простейший способ демонстрации маршрутизации.
+
+3. **React Router**:
+
+   - Гибкая библиотека для маршрутизации в React.
+   - Основные компоненты: `Routes`, `Route`, `Link`, `NavLink`, `Outlet`.
+   - Использует декларирование маршрутов с помощью компонентов.
+
+4. **Layout-компоненты**:
+
+   - Централизуют структуру страниц (общие элементы: header, footer, навигация).
+   - Используют компонент `Outlet` для отображения вложенных маршрутов.
+   - Облегчают поддержку и оформление приложения.
+
+5. **Динамические маршруты**:
+
+   - Позволяют передавать параметры через URL (`:param`).
+   - Получение параметров с помощью хука `useParams`.
+   - Динамические маршруты должны быть в конце списка для избежания конфликтов.
+
+6. **Переходы между страницами**:
+
+   - Компонент `Link` для плавных переходов.
+   - Компонент `NavLink` для создания активных ссылок.
+   - Хук `useNavigate` для программной навигации.
+
+7. **Преимущества использования React Router**:
+   - Простота и гибкость реализации маршрутов.
+   - Динамическая маршрутизация и вложенные страницы.
+   - Удобные переходы и активные ссылки.
+
 [^1]: _React Router_. reactrouter.com [online resource]. Available at: https://reactrouter.com
 [^2]: _Pick a Mode_. reactrouter.com [online resource]. Available at: https://reactrouter.com/start/modes
 [^3]: _Website Layout_. sendpulse.com [online resource]. Available at: https://sendpulse.com/support/glossary/website-layout
+[^4]: _Navigation_. reactrouter.com [online resouece]. Available at: https://reactrouter.com/start/declarative/navigating
