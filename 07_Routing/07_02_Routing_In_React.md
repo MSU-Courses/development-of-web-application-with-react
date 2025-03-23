@@ -455,7 +455,7 @@ function App() {
 
 Концептуальная схема:
 
-<a href="https://imgur.com/t3mJ1O5.png" width="850">
+<img href="https://i.imgur.com/t3mJ1O5.png" width="850" />
 
 ### Множество layout-компонентов
 
