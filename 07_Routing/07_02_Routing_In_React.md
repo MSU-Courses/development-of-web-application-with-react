@@ -12,7 +12,7 @@
 
 Когда пользователь переходит по определенному URL, React отображает соответствующий компонент без перезагрузки страницы. Это позволяет создавать приложения с быстрым и плавным интерфейсом.
 
-**Пример**:
+**Например**:
 
 - Если пользователь переходит по URL `/about`, React отображает компонент `About`.
 - Если пользователь переходит по URL `/contacts`, отображается компонент `Contacts`.
@@ -55,7 +55,7 @@ src/
 
 ```jsx
 // src/pages/HomePage.jsx
-import React from "react";
+import React from 'react';
 
 const HomePage = () => {
   return (
@@ -72,7 +72,7 @@ export default HomePage;
 ```jsx
 // src/pages/AboutPage.jsx
 
-import React from "react";
+import React from 'react';
 
 const AboutPage = () => {
   return (
@@ -93,9 +93,9 @@ export default AboutPage;
 **Пример 3**. _Реализация маршрутизации_
 
 ```jsx
-import React, { useState } from "react";
-import HomePage from "./pages/HomePage";
-import AboutPage from "./pages/AboutPage";
+import React, { useState } from 'react';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
 
 function App() {
   // Хранение текущего URL
@@ -103,14 +103,14 @@ function App() {
 
   // Функция для навигации по маршрутам
   const navigate = (path) => {
-    window.history.pushState({}, "", path);
+    window.history.pushState({}, '', path);
     setRoute(path);
   };
 
   // Отображение компонента-страницы в зависимости от текущего URL
   const renderPage = () => {
     switch (route) {
-      case "/about":
+      case '/about':
         return <AboutPage />;
       default:
         return <HomePage />;
@@ -125,8 +125,8 @@ function App() {
             Навигация по маршрутам 
             При нажатии на кнопку происходит переход по соответствующему маршруту             
           */}
-          <button onClick={() => navigate("/")}>Главная</button>
-          <button onClick={() => navigate("/about")}>О нас</button>
+          <button onClick={() => navigate('/')}>Главная</button>
+          <button onClick={() => navigate('/about')}>О нас</button>
         </nav>
       </header>
       <div>{renderPage()}</div>
@@ -149,16 +149,16 @@ export default App;
 ```jsx
 // routes.js
 
-import HomePage from "./pages/HomePage";
-import AboutPage from "./pages/AboutPage";
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
 
 const routes = [
   {
-    url: "/",
+    url: '/',
     component: <HomePage />,
   },
   {
-    url: "/about",
+    url: '/about',
     component: <AboutPage />,
   },
 ];
@@ -171,7 +171,7 @@ export default routes;
 ```jsx
 // hooks/useRoutes.js
 
-import { useState } from "react";
+import { useState } from 'react';
 
 const useRoutes = (routes) => {
   // Хранение текущего URL
@@ -179,18 +179,14 @@ const useRoutes = (routes) => {
 
   const navigate = (path) => {
     // Изменение URL
-    window.history.pushState({}, "", path);
+    window.history.pushState({}, '', path);
     setRoute(path);
   };
 
   // Отображение компонента-страницы в зависимости от текущего URL
   const renderPage = () => {
     const routeConfig = routes.find((r) => r.url === route);
-    return routeConfig ? (
-      routeConfig.component
-    ) : (
-      <h2>404 - Страница не найдена</h2>
-    );
+    return routeConfig ? routeConfig.component : <h2>404 - Страница не найдена</h2>;
   };
 
   return { navigate, renderPage };
@@ -202,9 +198,9 @@ export default useRoutes;
 Файл `App.js`:
 
 ```jsx
-import React from "react";
-import routes from "./routes";
-import useRoutes from "./hooks/useRoutes";
+import React from 'react';
+import routes from './routes';
+import useRoutes from './hooks/useRoutes';
 
 function App() {
   const { navigate, renderPage } = useRoutes(routes);
@@ -213,8 +209,8 @@ function App() {
     <>
       <header>
         <nav>
-          <button onClick={() => navigate("/")}>Главная</button>
-          <button onClick={() => navigate("/about")}>О нас</button>
+          <button onClick={() => navigate('/')}>Главная</button>
+          <button onClick={() => navigate('/about')}>О нас</button>
         </nav>
       </header>
       <div>{renderPage()}</div>
@@ -274,18 +270,18 @@ npm i react-router
 **Пример 5**. _Настройка маршрутизации_
 
 ```jsx
-import React from "react";
+import React from 'react';
 
-import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router";
-import App from "./app";
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router';
+import App from './app';
 
-const root = document.getElementById("root");
+const root = document.getElementById('root');
 
 ReactDOM.createRoot(root).render(
   <BrowserRouter>
     <App />
-  </BrowserRouter>
+  </BrowserRouter>,
 );
 ```
 
@@ -301,12 +297,12 @@ ReactDOM.createRoot(root).render(
 **Пример 6**. _Создание маршрутов_
 
 ```jsx
-import React from "react";
+import React from 'react';
 
-import { Routes, Route } from "react-router";
+import { Routes, Route } from 'react-router';
 
-import HomePage from "./pages/HomePage";
-import AboutPage from "./pages/AboutPage";
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
 
 function App() {
   return (
@@ -325,12 +321,12 @@ function App() {
 **Пример 7**. _Использование `index`-маршрута_
 
 ```jsx
-import React from "react";
+import React from 'react';
 
-import { Routes, Route } from "react-router";
+import { Routes, Route } from 'react-router';
 
-import HomePage from "./pages/HomePage";
-import AboutPage from "./pages/AboutPage";
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
 
 function App() {
   return (
@@ -349,13 +345,13 @@ React Router позволяет создавать вложенные маршр
 **Пример 8**. _Вложенные маршруты_
 
 ```jsx
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-import HomePage from "./pages/HomePage";
-import AboutPage from "./pages/AboutPage";
-import Articles from "./pages/Articles";
-import Article from "./pages/Article";
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import Articles from './pages/Articles';
+import Article from './pages/Article';
 
 function App() {
   return (
@@ -418,7 +414,7 @@ Layout-компонент позволяет избавиться от дубл�
 Файл `layouts/AppLayout.jsx`:
 
 ```jsx
-import { Outlet } from "react-router";
+import { Outlet } from 'react-router';
 
 // ...
 
@@ -438,7 +434,7 @@ export default AppLayout;
 Файл `App.js`:
 
 ```jsx
-import { Routes, Route } from "react-router";
+import { Routes, Route } from 'react-router';
 
 // ...
 
@@ -475,7 +471,7 @@ function App() {
 Файл `App.jsx`:
 
 ```jsx
-import { Routes, Route } from "react-router";
+import { Routes, Route } from 'react-router';
 
 // ...
 
@@ -514,7 +510,7 @@ function App() {
 **Пример 11**. _Динамические маршруты_
 
 ```jsx
-import { Routes, Route } from "react-router";
+import { Routes, Route } from 'react-router';
 
 // ...
 
@@ -550,7 +546,7 @@ export default App;
 **Пример 12**. _Получение параметров из URL_
 
 ```jsx
-import { useParams } from "react-router";
+import { useParams } from 'react-router';
 
 function ArticlePage() {
   const { id } = useParams();
@@ -577,7 +573,7 @@ function ArticlePage() {
 **Пример 13**. _Переходы между страницами_
 
 ```jsx
-import { Link } from "react-router";
+import { Link } from 'react-router';
 
 function Navigation() {
   return (
@@ -599,33 +595,24 @@ function Navigation() {
 **Пример 14**. _Использование `NavLink`_
 
 ```jsx
-import { NavLink } from "react-router";
+import { NavLink } from 'react-router';
 
 function Navigation() {
   return (
     <nav>
       <NavLink
         to="/"
-        className={({ isActive, isPending }) =>
-          isActive ? "active" : isPending ? "pending" : ""
-        }
-      >
+        className={({ isActive, isPending }) => (isActive ? 'active' : isPending ? 'pending' : '')}>
         Главная
       </NavLink>
       <NavLink
         to="/about"
-        className={({ isActive, isPending }) =>
-          isActive ? "active" : isPending ? "pending" : ""
-        }
-      >
+        className={({ isActive, isPending }) => (isActive ? 'active' : isPending ? 'pending' : '')}>
         О нас
       </NavLink>
       <NavLink
         to="/articles"
-        className={({ isActive, isPending }) =>
-          isActive ? "active" : isPending ? "pending" : ""
-        }
-      >
+        className={({ isActive, isPending }) => (isActive ? 'active' : isPending ? 'pending' : '')}>
         Статьи
       </NavLink>
     </nav>
@@ -635,23 +622,31 @@ function Navigation() {
 
 В этом примере каждому `NavLink` присваивается функция `className`, которая принимает объект с состояниями `isActive` и `isPending`. Если ссылка активна (`isActive`), применяется класс `active`; если ожидается загрузка (`isPending`), применяется класс pending; в противном случае класс не присваивается. ​
 
+Страница "Главная":
+
+<img src="https://img001.prntscr.com/file/img001/bL-xTNyxSdyXWdgZ5jojIQ.png" width="500" />
+
+Страница "О Нас":
+
+<img src="https://img001.prntscr.com/file/img001/QO5F2yvpTpeBMYBQCwJusQ.png" width="500" />
+
 #### Программная навигация с помощью `useNavigate`
 
 Если необходимо выполнить переход между страницами программно, например, по событию или после выполнения определенного действия, используется хук `useNavigate`. Этот хук позволяет осуществлять навигацию без использования компонента `Link`.
 
-**Пример 14**. _Программный переход_
+**Пример 15**. _Программный переход_
 
 ```jsx
-import { useNavigate } from "react-router";
+import { useNavigate } from 'react-router';
 
 function Navigation() {
   const navigate = useNavigate();
 
   return (
     <nav>
-      <button onClick={() => navigate("/")}>Главная</button>
-      <button onClick={() => navigate("/about")}>О нас</button>
-      <button onClick={() => navigate("/articles")}>Статьи</button>
+      <button onClick={() => navigate('/')}>Главная</button>
+      <button onClick={() => navigate('/about')}>О нас</button>
+      <button onClick={() => navigate('/articles')}>Статьи</button>
     </nav>
   );
 }
@@ -663,7 +658,7 @@ function Navigation() {
 - После выполнения асинхронного запроса.
 - При нажатии на кнопку.
 
-## Recap: Маршрутизация в React 
+## Recap: Маршрутизация в React
 
 1. **Маршрутизация в React**:
 
@@ -707,4 +702,5 @@ function Navigation() {
 [^1]: _React Router_. reactrouter.com [online resource]. Available at: https://reactrouter.com
 [^2]: _Pick a Mode_. reactrouter.com [online resource]. Available at: https://reactrouter.com/start/modes
 [^3]: _Website Layout_. sendpulse.com [online resource]. Available at: https://sendpulse.com/support/glossary/website-layout
-[^4]: _Navigation_. reactrouter.com [online resouece]. Available at: https://reactrouter.com/start/declarative/navigating
+[^4]: _Navigation_. reactrouter.com [online resource]. Available at: https://reactrouter.com/start/declarative/navigating
+[^5]: _Nav Link_. reactrouter.com [online resource]. Available at: https://reactrouter.com/api/components/NavLink

@@ -1,0 +1,5 @@
+// How to use? right click on file or folder of your workspace to add into .pawnignore
+// why to use? sometime, you don't want definition from all files, so use this file to ignore them.
+// if you are having problems, please report issue at https://github.com/oceanroleplay/pawn-community-tool/issues
+
+_samples/src/pages
