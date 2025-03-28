@@ -59,6 +59,8 @@
 
 **Пример 1**. _Создание формы с контролируемыми компонентами_.
 
+Файл _src/components/ContactForm.jsx_:
+
 ```jsx
 import { useState } from "react";
 
@@ -114,6 +116,8 @@ function ContactForm() {
 
 <details>
 <summary>Посмотреть пример</summary>
+
+Файл _src/components/ContactForm.jsx_:
 
 ```jsx
 import { useState } from "react";
@@ -176,6 +180,8 @@ function ContactForm() {
 Чтобы реализовать валидацию вручную, мы будем проверять значения полей в обработчике отправки и отображать сообщения об ошибках рядом с полями. Для этого нам понадобится состояние для хранения ошибок. Мы создадим объект `errors`, в котором будут храниться сообщения об ошибках для каждого поля, и обновим логику в функции `handleSubmit`.
 
 **Пример 2**. _Добавление валидации вручную_.
+
+Файл _src/components/ContactForm.jsx_:
 
 ```jsx
 function ContactForm() {
@@ -265,6 +271,8 @@ function ContactForm() {
 
 **Пример 3**. _Использование объекта для хранения данных формы_.
 
+Файл _src/components/ContactForm.jsx_:
+
 ```jsx
 import { useState } from "react";
 
@@ -345,5 +353,384 @@ function ContactForm() {
 export default ContactForm;
 ```
 
-[^1]: _Неконтролируемые компоненты в React_. habr.com [online resource]. URL: https://habr.com/ru/articles/319520/
-[^2]: Nartea Nichita. _Фильтрация и валидация данных форм_. github.com [online resource]. URL: https://github.com/MSU-Courses/advanced-web-programming/blob/main/07_Forms_And_Validation/07_04_Form_Validation.md
+## Работа с библиотекой React Hook Form
+
+**React Hook Form (RHF)** [^3] – легковесная библиотека для управления формами в React, построенная на хуках. Она позволяет значительно сократить объем кода формы и автоматизировать большинство задач: хранение и обновление значений полей, отслеживание ошибок, валидация и т.д.
+
+> [!TIP]
+> RHF добивается высокой производительности благодаря использованию концепции неконтролируемых компонентов (то есть опирается на прямой доступ к элементам DOM через рефы вместо хранения каждого символа в состоянии) – это минимизирует количество повторных рендеров и улучшает быстродействие приложения
+
+### Установка и подключение библиотеки
+
+Чтобы начать использовать React Hook Form
+
+```bash
+npm install react-hook-form
+```
+
+### Основные принципы React Hook Form
+
+1. **Контроль формы через хуки**. Вместо создания отдельных состояний для каждого поля формы, RHF предоставляет хуки для управления всей формой. Это упрощает код и уменьшает объем состояний.
+2. **Работа с неконтролируемыми компонентами**. RHF использует неконтролируемые компоненты для управления формой. Это позволяет снизить количество повторных рендеров и улучшить производительность.
+3. **Валидация и отслеживание ошибок**. RHF предоставляет удобные методы для валидации данных и отображения ошибок. Это позволяет легко проверять данные и предотвращать отправку некорректных данных.
+4. **Автоматическое обновление данных**. RHF автоматически обновляет данные формы при вводе пользователя. Это позволяет мгновенно отображать изменения и улучшает пользовательский опыт.
+
+### Создание формы с React Hook Form
+
+Перепишем форму из _Примера 1_, используя библиотеку React Hook Form (RHF). Эта библиотека позволяет значительно упростить работу с формами за счет использования хуков, таких как `useForm`, `register`, `handleSubmit`, а также автоматической обработки ошибок.
+
+**Пример 4**. _Создание формы с React Hook Form_.
+
+Файл _src/components/ContactForm.jsx_:
+
+```jsx
+import { useForm } from "react-hook-form";
+
+function ContactForm() {
+  // Используем хук useForm для получения методов работы с формой
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  // Функция обработки отправки формы
+  const onSubmit = (data) => {
+    console.log("Данные формы:", data);
+    // Здесь могла бы быть отправка данных на сервер
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
+        <label>Имя:</label>
+        <input
+          type="text"
+          {...register("name", {
+            required: "Имя обязательно",
+            minLength: {
+              value: 2,
+              message: "Имя должно содержать не менее 2 символов",
+            },
+          })}
+        />
+        {/* Вывод сообщения об ошибке для имени */}
+        {errors.name && <div className="error">{errors.name.message}</div>}
+      </div>
+
+      <div>
+        <label>Email:</label>
+        <input
+          type="email"
+          {...register("email", {
+            required: "Email обязателен",
+            pattern: {
+              value: /\S+@\S+\.\S+/,
+              message: "Некорректный формат email",
+            },
+          })}
+        />
+        {/* Вывод сообщения об ошибке для email */}
+        {errors.email && <div className="error">{errors.email.message}</div>}
+      </div>
+
+      <button type="submit">Отправить</button>
+    </form>
+  );
+}
+
+export default ContactForm;
+```
+
+В данном коде:
+
+1. Хук `useForm`, чтобы получить необходимые методы и объекты для работы с формой:
+   - `register` — функция для связывания полей формы с системой RHF.
+   - `handleSubmit` — функция-обработчик отправки формы.
+   - `errors` — объект, содержащий ошибки валидации.
+2. Каждое поле связывается с формой через `{...register('<имя поля>')}`.
+   1. Мы указываем имя поля ("name") и объект с правилами валидации:
+      - `required` — делает поле обязательным и выводит сообщение об ошибке, если поле пустое.
+      - `minLength` — задает минимальное количество символов и сообщение в случае несоответствия.
+      - `pattern` — проверяет формат поля с помощью регулярного выражения.
+3. Обработчик отправки формы кардинально упростился: Функция `onSubmit` оборачивается вызовом `handleSubmit(onSubmit)`. RHF сам вызовет `onSubmit` только если данные прошли валидацию. В противном случае произойдет предотвращение отправки и заполнение объекта `errors`.
+4. Объект `errors` содержит ошибки валидации для полей (если они есть). Если, например, поле `name` не заполнено, то `errors.name` будет объектом с сообщением об ошибке.
+
+При использовании RHF каждый ввод в поле обновляет данные формы напрямую через отслеживаемые рефы (используя `ref`), а не через состояние компонента. Это позволяет:
+
+- Избежать ненужных перерисовок компонента при каждом вводе символа.
+- Поддерживать высокую производительность даже на больших формах.
+- Работать с данными формы более гибко и удобно.
+
+В отличие от классического подхода, нам не нужно вручную вызывать `event.preventDefault()`. RHF делает это автоматически внутри функции `handleSubmit`, предотвращая стандартное поведение формы. Это упрощает код и делает его более чистым.
+
+#### Представление данных формы
+
+​В библиотеке React Hook Form данные, введённые пользователем в поля формы, автоматически собираются в объект. Этот объект представляет собой структуру, где ключами являются имена полей формы, а значениями — соответствующие введённые данные.
+
+Рассмотрим пример: если пользователь ввёл в поле name значение `'John'`, а в поле `email` — `'john@gmail.com'`, то при отправке формы объект будет выглядеть следующим образом:​
+
+```js
+{
+    name: 'John',
+    email: 'john@gmail.com'
+}
+```
+
+Функция `onSubmit` получает этот объект и может использовать его для дальнейшей обработки, например, для отправки данных на сервер или отображения в интерфейсе.
+
+### Валидация формы при помощи библиотеки Yup
+
+В предыдущих примерах мы реализовали валидацию формы с использованием встроенных средств React Hook Form (RHF). Однако, при работе с более сложными формами ручная валидация может становиться громоздкой и трудно поддерживаемой.
+
+Чтобы упростить процесс и сделать его более гибким, можно использовать специализированные библиотеки валидации. Одной из самых популярных является Yup. Она позволяет создавать схемы валидации с четко заданными правилами и удобно интегрировать их с RHF.
+
+**Yup** [^4] — это библиотека для валидации данных в JavaScript. Она позволяет создавать схемы валидации с помощью цепочки методов, поддерживая:
+
+- Проверку строк, чисел, дат и других типов данных.
+- Задание минимальной и максимальной длины.
+- Проверку формата (например, `email` или `URL`).
+- Пользовательские сообщения об ошибках.
+- Композицию сложных правил.
+
+#### Установка и подключение Yup
+
+Для использования Yup с React Hook Form необходимо установить пакеты `yup` и `@hookform/resolvers`:
+
+```bash
+npm install yup @hookform/resolvers
+```
+
+_Примечание_: Пакет `@hookform/resolvers` содержит готовые адаптеры для интеграции схем валидации (Yup, Zod и др.) с React Hook Form.
+
+#### Использование Yup для валидации формы
+
+Для использования Yup в React Hook Form необходимо создать схему валидации с помощью Yup и передать ее в метод `useForm` в качестве резолвера. Это позволяет автоматически валидировать данные формы и отображать сообщения об ошибках.
+
+**Пример 5**. _Создание схемы валидации с Yup_.
+
+Файл _src/validation/contact.schema.js_:
+
+```jsx
+import * as yup from "yup";
+
+// Определяем схему валидации для полей формы
+const schema = yup
+  .object({
+    name: yup
+      .string()
+      .required("Имя не должно быть пустым")
+      .min(2, "Имя должно содержать не менее 2 символов"),
+    email: yup
+      .string()
+      .required("Email не должен быть пустым")
+      .email("Некорректный формат email"),
+  })
+  .required();
+
+export default schema;
+```
+
+- **Структура схемы**. Мы используем объект `yup.object()` для создания схемы.
+  - Поле `name`: проверяется на то, что оно является строкой, не пустое и содержит минимум 2 символа.
+  - Поле `email`: проверяется на соответствие формату `email`.
+- **Сообщения об ошибках**. Каждое правило валидации сопровождается сообщением, которое будет отображено при нарушении условия.
+
+> [!NOTE]
+> Подробная документация по Yup доступна на официальном сайте: https://github.com/jquense/yup
+
+**Пример 6**. _Использование схемы валидации в React Hook Form_.
+
+Файл _src/components/ContactForm.jsx_:
+
+```jsx
+import { useForm } from "react-hook-form";
+
+import schema from "./validation/contact.schema";
+
+function ContactForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    // Передаем схему валидации в качестве резолвера
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = (data) => {
+    console.log("Данные формы:", data);
+    // Здесь могла бы быть отправка данных на сервер
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
+        <label>Имя:</label>
+        <input type="text" {...register("name")} />
+        {errors.name && <div className="error">{errors.name.message}</div>}
+      </div>
+
+      <div>
+        <label>Email:</label>
+        <input type="email" {...register("email")} />
+        {errors.email && <div className="error">{errors.email.message}</div>}
+      </div>
+
+      <button type="submit">Отправить</button>
+    </form>
+  );
+}
+
+export default ContactForm;
+```
+
+В этом примере:
+
+1. В хук `useForm`, передается резолвер `yupResolver(schema)`, который связывает форму с созданной схемой валидации.
+2. Схема валидации перенесена отдельный файл _contact.schema.js_.
+3. Функция `register` используется для связывания полей с формой и `errors` для отображения сообщений об ошибках.
+4. Если данные формы прошли валидацию, вызывается функция `onSubmit`, которая выводит данные в консоль.
+
+### Управление динамическими полями формы
+
+**Динамические поля** - это поля, которые могут добавляться или удаляться во время работы с формой. Например, это может быть список email-адресов, телефонов, адресов и т.д. Для работы с динамическими полями в React Hook Form используются массивы и методы `useFieldArray` [^5].
+
+**Пример 7**. _Управление динамическими полями формы_.
+
+Файл _src/components/DynamicForm.jsx_:
+
+```jsx
+import React from "react";
+import { useForm, useFieldArray } from "react-hook-form";
+
+function DynamicForm() {
+  const { register, control, handleSubmit } = useForm({
+    defaultValues: {
+      names: [""],
+    },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "names",
+  });
+
+  const onSubmit = (data) => {
+    console.log("Отправленные данные:", data);
+    // Здесь можно добавить логику отправки данных на сервер
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      {fields.map((field, index) => (
+        <div key={field.id}>
+          {/* Имя поля связано с массивом `names`, 
+            каждый элемент которого имеет уникальный индекс. 
+            Имена полей должны быть в формате `names.0`, `names.1` и т.д.
+            Это позволяет сохранять данные в виде массива.
+            */}
+          <input {...register(`names.${index}`)} defaultValue={field.value} />
+          <button type="button" onClick={() => remove(index)}>
+            Удалить
+          </button>
+        </div>
+      ))}
+      <button type="button" onClick={() => append("")}>
+        Добавить поле
+      </button>
+      <button type="submit">Отправить</button>
+    </form>
+  );
+}
+
+export default DynamicForm;
+```
+
+**В этом примере**:
+
+- Хук `useForm` инициализирует форму с начальными значениями.​
+- Хук `useFieldArray` управляет массивом полей `names`.
+- Методы `append` и `remove` добавляют и удаляют поля из массива
+- При отправке формы данные выводятся в консоль.​
+- Данные хранятся в массиве `names`, например: `{names: ['Имя1', 'Имя2', ...]}`. При добавлении нового поля ввода, оно автоматически добавляется в массив. При удалении поля, оно удаляется из массива.
+
+### Валидация динамических полей с использованием Yup
+
+Для валидации динамических полей формы с использованием Yup, необходимо создать схему валидации, которая будет применяться к каждому элементу массива. Для этого можно использовать метод `array().of()`.
+
+**Пример 8**. _Валидация динамических полей с использованием Yup_.
+
+Файл _src/validation/dynamic.schema.js_:
+
+```jsx
+const schema = yup.object().shape({
+  names: yup
+    .array()
+    .of(yup.string().required("Поле обязательно для заполнения")),
+});
+```
+
+**Примечание**: В данном примере мы создаем схему валидации, которая проверяет, что каждый элемент массива `names` является строкой и не пустым.
+
+**Пример 9**. _Использование схемы валидации для динамических полей_.
+
+Файл _src/components/DynamicForm.jsx_:
+
+```jsx
+import React from "react";
+import { useForm, useFieldArray } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+function DynamicForm() {
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      names: [""],
+    },
+    resolver: yupResolver(schema),
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "names",
+  });
+
+  const onSubmit = (data) => {
+    console.log("Отправленные данные:", data);
+    // Здесь можно добавить логику отправки данных на сервер
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      {fields.map((field, index) => (
+        <div key={field.id}>
+          <input {...register(`names.${index}`)} defaultValue={field.value} />
+          {errors.names && errors.names[index] && (
+            <p>{errors.names[index].message}</p>
+          )}
+          <button type="button" onClick={() => remove(index)}>
+            Удалить
+          </button>
+        </div>
+      ))}
+      <button type="button" onClick={() => append("")}>
+        Добавить поле
+      </button>
+      <button type="submit">Отправить</button>
+    </form>
+  );
+}
+
+export default DynamicForm;
+```
+
+[^1]: _Неконтролируемые компоненты в React_. habr.com [online resource]. Available at: https://habr.com/ru/articles/319520/
+[^2]: Nartea Nichita. _Фильтрация и валидация данных форм_. github.com [online resource]. Available at: https://github.com/MSU-Courses/advanced-web-programming/blob/main/07_Forms_And_Validation/07_04_Form_Validation.md
+[^3]: _React Hook Form_. react-hook-form.com [online resource]. Available at: https://react-hook-form.com
+[^4]: _Yup_. github.com [online resource]. Available at: https://github.com/jquense/yup
+[^5]: _useFieldArray_. react-hook-form.com [online resource]. Available at: https://www.react-hook-form.com/api/usefieldarray/
