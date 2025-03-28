@@ -546,7 +546,9 @@ export default schema;
 ```jsx
 import { useForm } from "react-hook-form";
 
-import schema from "./validation/contact.schema";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+import schema from "../validation/contact.schema";
 
 function ContactForm() {
   const {
@@ -681,6 +683,7 @@ const schema = yup.object().shape({
 import React from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import schema from "../validation/dynamic.schema";
 
 function DynamicForm() {
   const {
