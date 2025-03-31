@@ -114,50 +114,50 @@ function ContactForm() {
 6. Метод `event.preventDefault()` предотвращает стандартное поведение браузера (перезагрузку страницы при отправке формы). Вместо перезагрузки мы выполняем свою логику – здесь просто выводим введенные данные в консоль.
 7. Значение поля привязано к состоянию через атрибут `value`. Это позволяет React полностью контролировать содержимое поля.
 
-Чтобы убедиться, как работает привязка данных к состоянию, скопируйте и вставьте приведённый ниже код в Ваш React-проект. При вводе имени и `email` вы увидите, как данные моментально отображаются на экране. 
+Чтобы убедиться, как работает привязка данных к состоянию, скопируйте и вставьте приведённый ниже код в Ваш React-проект. При вводе имени и `email` вы увидите, как данные моментально отображаются на экране.
 
 Это происходит благодаря тому, что при каждом изменении в поле ввода обновляется состояние, и React автоматически перерисовывает компонент с новыми значениями.
 
 <details>
-<summary>Посмотреть пример</summary>
+  <summary>Посмотреть пример</summary>
 
-Файл _src/components/ContactForm.jsx_:
+  Файл _src/components/ContactForm.jsx_:
 
-```jsx
-import { useState } from "react";
+  ```jsx
+  import { useState } from "react";
 
-function ContactForm() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  function ContactForm() {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
 
-  const handleNameChange = (event) => setName(event.target.value);
-  const handleEmailChange = (event) => setEmail(event.target.value);
+    const handleNameChange = (event) => setName(event.target.value);
+    const handleEmailChange = (event) => setEmail(event.target.value);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Данные формы:", { name, email });
-  };
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      console.log("Данные формы:", { name, email });
+    };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Имя:</label>
-        <input type="text" value={name} onChange={handleNameChange} />
-        <p>Имя: {name}</p>
-      </div>
-      <div>
-        <label>Email:</label>
-        <input type="email" value={email} onChange={handleEmailChange} />
-        <p>Email: {email}</p>
-      </div>
-      <button type="submit">Отправить</button>
-    </form>
-  );
-}
-```
+    return (
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Имя:</label>
+          <input type="text" value={name} onChange={handleNameChange} />
+          <p>Имя: {name}</p>
+        </div>
+        <div>
+          <label>Email:</label>
+          <input type="email" value={email} onChange={handleEmailChange} />
+          <p>Email: {email}</p>
+        </div>
+        <button type="submit">Отправить</button>
+      </form>
+    );
+  }
+  ```
 
-> [!TIP]
-> Событие `onChange` вызывается каждый раз при изменении значения в поле ввода. Это позволяет сразу обновлять состояние компонента и отображать актуальные данные на экране.
+  > [!TIP]
+  > Событие `onChange` вызывается каждый раз при изменении значения в поле ввода. Это позволяет сразу обновлять состояние компонента и отображать актуальные данные на экране.
 
 </details>
 
