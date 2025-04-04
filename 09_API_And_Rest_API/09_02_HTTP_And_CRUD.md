@@ -50,7 +50,6 @@ DELETE  https://api.example.com/users/5      // Удалить пользова�
 
 Вот краткий **Recap** для главы про HTTP и методы CRUD:
 
----
 
 ## Recap: HTTP и CRUD в API
 
