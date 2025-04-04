@@ -1,0 +1,12 @@
+.button {
+  outline: none;
+  border: 0px;
+  cursor: pointer;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: #006400;
+}
+.button:hover {
+  background-color: #007600;
+}/*# sourceMappingURL=PrimaryButton.module.css.map */
