@@ -287,6 +287,7 @@ GET https://ваш-api.mockapi.io/api/recipes/:id
 
 > [!NOTE]
 > Ознакомиться с Postman можно здесь:
+>
 > 1. https://www.postman.com/ - официальный сайт Postman.
 > 2. https://www.freecodecamp.org/news/how-to-use-an-api-with-postman/ - статья на freeCodeCamp о том, как использовать Postman для работы с API.
 
@@ -704,5 +705,32 @@ function RecipeDetails() {
 
 export default RecipeDetails;*
 ```
+
+Вот краткий **Recap** для главы **«Работа с тестовым API (MockAPI)»**:
+
+---
+
+## Recap: Работа с MockAPI в React
+
+1. **MockAPI** — это онлайн-сервис, позволяющий быстро создать REST API без сервера. Идеально подходит для обучения и прототипирования.
+
+2. В MockAPI можно:
+
+   - создать **ресурсы** с нужными полями;
+   - выполнять все основные запросы: `GET`, `POST`, `PUT`, `DELETE`;
+   - фильтровать, сортировать и постранично загружать данные.
+
+3. В React-приложении:
+
+   - Для работы с API удобно использовать **axios**, предварительно настроив `baseURL`.
+   - Логику работы с API лучше выносить в отдельные модули (например, `api/recipes.js`).
+   - В компонентах реализуется полный цикл CRUD:
+     - `GET` — получение данных;
+     - `POST` — создание рецепта;
+     - `PUT` — обновление;
+     - `DELETE` — удаление.
+   - Реализована **обработка ошибок** (в том числе 404) и отображение соответствующего состояния (`loading`, `error`, `notFound`).
+
+4. Для тестирования API удобно использовать **Postman** — визуальный инструмент для отправки HTTP-запросов.
 
 [^1]: _MockAPI_. mockapi.io [online resource]. Available at: https://mockapi.io/
