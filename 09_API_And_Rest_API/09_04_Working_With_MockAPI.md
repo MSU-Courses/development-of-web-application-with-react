@@ -706,9 +706,6 @@ function RecipeDetails() {
 export default RecipeDetails;*
 ```
 
-Вот краткий **Recap** для главы **«Работа с тестовым API (MockAPI)»**:
-
----
 
 ## Recap: Работа с MockAPI в React
 
