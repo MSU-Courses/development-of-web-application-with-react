@@ -707,7 +707,7 @@ export default RecipeDetails;*
 ```
 
 
-## Recap: Работа с MockAPI в React
+## Recap: Работа с тестовым API (MockAPI)
 
 1. **MockAPI** — это онлайн-сервис, позволяющий быстро создать REST API без сервера. Идеально подходит для обучения и прототипирования.
 

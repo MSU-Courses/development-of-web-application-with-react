@@ -43,7 +43,7 @@ console.log(memoized(5)); // 10
 
 ## React.memo: мемоизация компонентов
 
-React.memo — это функция (HOC, _higher-order component_ [^1]), которая оборачивает функциональный компонент и изменяет его поведение: теперь компонент будет сравнивать свои пропсы при каждом рендере и перерисовываться только если они изменились [^2]. Проще говоря, `React.memo` делает компонент _"чистым" по пропсам_: если входные данные (пропсы) остались теми же, React использует результат предыдущего рендера из кеша и не вызывает компонент повторно.
+`React.memo` [^5] — это функция (HOC, _higher-order component_ [^1]), которая оборачивает функциональный компонент и изменяет его поведение: теперь компонент будет сравнивать свои пропсы при каждом рендере и перерисовываться только если они изменились [^2]. Проще говоря, `React.memo` делает компонент _"чистым" по пропсам_: если входные данные (пропсы) остались теми же, React использует результат предыдущего рендера из кеша и не вызывает компонент повторно.
 
 Применим `React.memo` к компоненту `Counter` из предыдущего примера (1).
 
@@ -100,7 +100,7 @@ Rendering counter A
 
 ## useCallback: мемоизация функций
 
-Второй ключевой инструмент оптимизации в React — это хук `useCallback`. Его задача — вернуть ту же самую функцию между рендерами, если не изменились её зависимости [^2]. Это решает одну из типичных проблем: постоянно меняющиеся ссылки на функции-колбэки.
+Второй ключевой инструмент оптимизации в React — это хук `useCallback` [^6]. Его задача — вернуть ту же самую функцию между рендерами, если не изменились её зависимости [^2]. Это решает одну из типичных проблем: постоянно меняющиеся ссылки на функции-колбэки.
 
 Во многих случаях это не вызывает проблем. Но если такая функция передаётся в дочерний компонент через props, возникает следующий сценарий:
 
@@ -220,7 +220,7 @@ const List = React.memo(({ items, onItemClick }) => {
 
 ## useMemo: мемоизация значений - оптимизация тяжёлых вычислений
 
-Хук `useMemo` позволяет кэшировать (запоминать) результат тяжёлых вычислений между рендерами компонента. Это нужно для того, чтобы не пересчитывать результат заново каждый раз, если входные данные не изменились.
+Хук `useMemo` [^7] позволяет кэшировать (запоминать) результат тяжёлых вычислений между рендерами компонента. Это нужно для того, чтобы не пересчитывать результат заново каждый раз, если входные данные не изменились.
 
 Проще говоря, `useMemo` — это аналог `React.memo`, но не для компонентов, а для обычных вычислений внутри компонента. Фактически, это чистый механизм мемоизации, о котором мы говорили в разделе: [Что такое мемоизация?](#что-такое-мемоизация).
 
@@ -489,3 +489,6 @@ function Dashboard({ data }) {
 [^2]: _Optimizing React Performance By Preventing Unnecessary Re-renders_. DebugBear [online resource]. Available at: https://www.debugbear.com/blog/react-rerenders
 [^3]: _Component with React.Memo - custom arePropsEqual_. codesandbox.io [online resource]. Available at: https://codesandbox.io/p/sandbox/component-with-react-memo-custom-arepropsequal-rbz80i
 [^4]: _React DevTools Profiler_. chrome extension [online resource]. Available at: https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi
+[^5]: _memo_. react.dev [online resource]. Available at: https://react.dev/reference/react/memo
+[^6]: _React.useCallback_. react.dev [online resource]. Available at: https://react.dev/reference/react/useCallback
+[^7]: _React.useMemo_. react.dev [online resource]. Available at: https://react.dev/reference/react/useMemo
